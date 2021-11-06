@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <vector>
 
 //#include <math.h>
 //#include <algorithm>
@@ -17,23 +18,17 @@ void get_cats_config(std::string path, int &number_of_different_cats, int &maxim
     while (getline(config_cats, line))
     {
         std::istringstream is_line(line);
-        //std::cout << line << std::endl;
-
         std::string delimiter = " = ";
-        std::string key = line.substr(0, line.find(delimiter));
+        size_t position_delimiter = line.find(delimiter);
+        std::string key = line.substr(0, position_delimiter);
         std::string value;
-        //std::cout << "key : " << key << std::endl;
 
-        line.erase(0, line.find(delimiter) + delimiter.length());
+        line.erase(0, position_delimiter + delimiter.length());
         value = line;
 
-        //std::cout << "value : " << value << std::endl;
-
-        //getline(is_line, value);
         if (key == "NumberOfDifferentCats")
         {
             number_of_different_cats = stoi(value);
-            //std::cout << "number_of_different_cats : " << number_of_different_cats << std::endl;
         }
         else if (key == "MaximumSizeOfCats")
         {
