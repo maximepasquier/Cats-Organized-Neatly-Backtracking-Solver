@@ -1,0 +1,2 @@
+NumberOfDifferentCats = 4
+MaximumSizeOfCats = 9
