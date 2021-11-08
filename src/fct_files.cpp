@@ -82,3 +82,56 @@ void get_cats_shapes(std::string path, Cat *cat_array[], std::vector<std::string
     }
     cats_shapes.close();
 }
+
+void get_grid_size(std::string path, int &grid_size)
+{
+    std::ifstream grid_config;
+    grid_config.open(path);
+    std::string line;
+    int count = 0;
+    while (getline(grid_config, line))
+    {
+        std::string delimiter = " = ";
+        size_t position_delimiter = line.find(delimiter);
+        std::string key = line.substr(0, position_delimiter);
+        std::string value;
+
+        line.erase(0, position_delimiter + delimiter.length());
+        value = line;
+
+        if (key == "GridSize")
+        {
+            grid_size = stoi(value);
+        }
+    }
+    grid_config.close();
+}
+
+void get_grid(std::string path, int **game_grid, int grid_size)
+{
+    std::ifstream grid;
+    grid.open(path);
+    std::string line;
+    int column = 0;
+    while (getline(grid, line))
+    {
+        for (size_t i = 0; i < grid_size; i++)
+        {
+            char c = line[2*i];
+            game_grid[i][column] = std::stoi(&c);
+        }
+        column++;
+    }
+}
+
+void print_grid(int **game_grid, int grid_size)
+{
+    for (size_t i = 0; i < grid_size; i++)
+    {
+        for (size_t j = 0; j < grid_size; j++)
+        {
+            std::cout << game_grid[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
+}
