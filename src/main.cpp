@@ -20,10 +20,23 @@ int main()
     }
     std::cout << std::endl;
 
-    Cat cat_array[number_of_cats];
+    Cat *cat_array[number_of_cats];
+
+    for (size_t i = 0; i < number_of_cats; i++)
+    {
+        cat_array[i] = new Cat(maximum_cat_shape);
+    }
 
     get_cats_shapes("./CatsShapes.txt", cat_array, list_of_cats);
 
+    cat_array[0]->print_matrix();
+    cat_array[1]->print_matrix();
+    cat_array[2]->print_matrix();
+    cat_array[3]->print_matrix();
+    cat_array[4]->print_matrix();
+    cat_array[5]->print_matrix();
+    cat_array[6]->print_matrix();
+    cat_array[7]->print_matrix();
 
     return 0;
 }

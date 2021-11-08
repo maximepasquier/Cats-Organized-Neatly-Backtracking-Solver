@@ -3,10 +3,7 @@
 #include <vector>
 #include <limits.h>
 
-//#include <math.h>
-//#include <algorithm>
 #include <sstream>
-//#include <sys/stat.h>
 
 #include "fct_files.hpp"
 
@@ -58,6 +55,30 @@ void get_cats_config(std::string path, int &number_of_different_cats, int &maxim
     }
     config_cats.close();
 }
-void get_cats_shapes(std::string path, Cat cat_array[], std::vector<std::string> list_of_cats)
+void get_cats_shapes(std::string path, Cat *cat_array[], std::vector<std::string> list_of_cats)
 {
+    std::ifstream cats_shapes;
+    cats_shapes.open(path);
+
+    int iterator = 0;
+    for (std::string cat_key : list_of_cats)
+    {
+        std::string line;
+        while (getline(cats_shapes, line))
+        {
+            std::string delimiter = " = ";
+            size_t position_delimiter = line.find(delimiter);
+            std::string key = line.substr(0, position_delimiter);
+            if (key == cat_key)
+            {
+                line.erase(0, position_delimiter + delimiter.length());
+                cat_array[iterator]->Set_matrix(line);
+                iterator++;
+                break;
+            }
+        }
+        cats_shapes.clear();
+        cats_shapes.seekg(0);
+    }
+    cats_shapes.close();
 }

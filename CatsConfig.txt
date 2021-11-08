@@ -1,4 +1,4 @@
 NumberOfDifferentCats = 4
-MaximumSizeOfCats = 9
+MaximumSizeOfCats = 3
 NumberOfCats = 8
 ListOfCats = Cat1,Cat2,Cat2,Cat2,Cat2,Cat3,Cat3,Cat4
