@@ -5,7 +5,7 @@
 
 int main()
 {
-    int number_of_different_cats, maximum_cat_shape, number_of_cats, grid_size;
+    int number_of_different_cats, maximum_cat_shape, number_of_cats, initial_grid_size, padded_grid_size, grid_total_sum = 0;
     std::vector<std::string> list_of_cats;
 
     get_cats_config("./data/CatsConfig.txt", number_of_different_cats, maximum_cat_shape, number_of_cats, list_of_cats);
@@ -39,20 +39,51 @@ int main()
     cat_array[6]->print_matrix();
     cat_array[7]->print_matrix();
 
-    get_grid_size("./data/GridConfig.txt", grid_size);
+    get_grid_size("./data/GridConfig.txt", initial_grid_size);
 
-    std::cout << "Gris is of size : " << grid_size << std::endl;
+    std::cout << "Gris is of size : " << initial_grid_size << std::endl;
 
-    int **game_grid;
-    game_grid = new int *[grid_size];
-    for (size_t i = 0; i < grid_size; i++)
+    //* game_grid padding with max cat shape
+    padded_grid_size = initial_grid_size + 2 * (maximum_cat_shape - 1);
+
+    std::cout << "Gris is of size (with padding) : " << padded_grid_size << std::endl;
+
+    int **game_grid_padded;
+    game_grid_padded = new int *[padded_grid_size];
+    for (int i = 0; i < padded_grid_size; i++)
     {
-        game_grid[i] = new int;
+        game_grid_padded[i] = new int[padded_grid_size];
     }
 
-    get_grid("./data/GameGrid.txt", game_grid, grid_size);
+    set_grid_to_1(game_grid_padded, padded_grid_size);
 
-    print_grid(game_grid, grid_size);
+    get_grid("./data/GameGrid.txt", game_grid_padded, padded_grid_size, maximum_cat_shape);
 
+    print_grid(game_grid_padded, padded_grid_size);
+
+    std::cout << std::endl;
+
+    /*
+
+    print_grid(game_grid_padded, padded_grid_size);
+
+    //* Backtracking
+    int iterator = 0;
+    while (iterator < number_of_cats)
+    {
+        if (cat_array[iterator]->place_cat(game_grid_padded, padded_grid_size))
+        {
+            iterator++;
+        }
+        else
+        {
+            iterator--;
+        }
+    }
+
+    std::cout << "Solution grid is : " << std::endl;
+
+    print_grid(game_grid_padded, padded_grid_size);
+    */
     return 0;
 }

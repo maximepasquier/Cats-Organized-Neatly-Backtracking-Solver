@@ -107,21 +107,35 @@ void get_grid_size(std::string path, int &grid_size)
     grid_config.close();
 }
 
-void get_grid(std::string path, int **game_grid, int grid_size)
+void set_grid_to_1(int **game_grid_padded, int padded_grid_size)
+{
+    for (size_t i = 0; i < padded_grid_size; i++)
+    {
+        for (size_t j = 0; j < padded_grid_size; j++)
+        {
+            game_grid_padded[i][j] = 1;
+        }
+    }
+}
+
+void get_grid(std::string path,int **game_grid, int grid_size, int maximum_cat_shape)
 {
     std::ifstream grid;
     grid.open(path);
     std::string line;
+    int padding_shift = maximum_cat_shape - 1;
     int column = 0;
+
     while (getline(grid, line))
     {
-        for (size_t i = 0; i < grid_size; i++)
+        for (size_t i = 0; i < grid_size - 2 * (maximum_cat_shape - 1); i++)
         {
-            char c = line[2*i];
-            game_grid[i][column] = std::stoi(&c);
+            char c = line[2 * i];
+            game_grid[i + padding_shift][column + padding_shift] = std::stoi(&c);
         }
         column++;
     }
+    
 }
 
 void print_grid(int **game_grid, int grid_size)
