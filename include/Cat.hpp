@@ -7,6 +7,7 @@
 class Cat
 {
 private:
+    int cat_number;
     int size;
     int **shape;
     int iterator_grid_position_line;
@@ -16,6 +17,7 @@ private:
 public:
     Cat(int size);
     ~Cat();
+    void Set_cat_number(int number);
     void Set_matrix(std::string values);
     void print_matrix();
     bool place_cat(int ** game_grid,int grid_size);

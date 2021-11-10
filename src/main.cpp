@@ -24,6 +24,7 @@ int main()
     for (size_t i = 0; i < number_of_cats; i++)
     {
         cat_array[i] = new Cat(maximum_cat_shape);
+        cat_array[i]->Set_cat_number(i+22);
     }
 
     get_cats_shapes("./data/CatsShapes.txt", cat_array, list_of_cats);
@@ -61,11 +62,12 @@ int main()
     std::cout << std::endl;
 
     //* Backtracking
-    
+
     int iterator = 0;
-    //while (iterator < number_of_cats)
-    while(iterator < 8)
+    while (iterator < number_of_cats)
     {
+        //std::cout << "L'iterator est : " << iterator << std::endl;
+
         if (cat_array[iterator]->place_cat(game_grid_padded, padded_grid_size))
         {
             iterator++;
@@ -74,11 +76,10 @@ int main()
         {
             iterator--;
         }
-        std::cout << "L'iterator est : " << iterator << std::endl;
-        print_grid(game_grid_padded, padded_grid_size);
-        std::cout<<std::endl;
+        //print_grid(game_grid_padded, padded_grid_size);
+        //std::cout << std::endl;
     }
-    
+
     /*
     cat_array[7]->print_matrix();
     cat_array[7]->rotate_shape();
@@ -86,9 +87,17 @@ int main()
 
     
     std::cout << "Solution grid is : " << std::endl;
-
-    print_grid(game_grid_padded, padded_grid_size);
     */
+    print_grid(game_grid_padded, padded_grid_size);
+    std::cout << std::endl;
+
+    int **solution_grid;
+    solution_grid = new int *[initial_grid_size];
+    for (int i = 0; i < initial_grid_size; i++)
+    {
+        solution_grid[i] = new int[initial_grid_size];
+    }
+    print_solution(solution_grid, cat_array, initial_grid_size,number_of_cats);
 
     return 0;
 }

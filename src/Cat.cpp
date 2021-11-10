@@ -18,6 +18,11 @@ Cat::~Cat()
 {
 }
 
+void Cat::Set_cat_number(int number)
+{
+    cat_number = number;
+}
+
 void Cat::Set_matrix(std::string values)
 {
     std::cout << values << std::endl;
@@ -56,7 +61,10 @@ bool Cat::place_cat(int **game_grid, int grid_size)
         {
             for (int grid_column = iterator_grid_position_column; grid_column < iterator_grid_position_column + size; grid_column++)
             {
-                game_grid[grid_line][grid_column] = 0;
+                if (shape[grid_line - iterator_grid_position_line][grid_column - iterator_grid_position_column] == 1)
+                {
+                    game_grid[grid_line][grid_column] = 0;
+                }
             }
         }
         already_placed = false;
@@ -74,6 +82,12 @@ bool Cat::place_cat(int **game_grid, int grid_size)
                 {
                     if (iterator_grid_position_line == grid_size - size && iterator_grid_position_column == grid_size - size)
                     {
+                        //+ Rester iterators
+                        iterator_grid_position_line = 0;
+                        iterator_grid_position_column = 0;
+                        iterator_rotation = 0;
+                        already_placed = false;
+                        //std::cout << "FALSE!" << std::endl;
                         return false;
                     }
                     increment_position_iterators(grid_size);
