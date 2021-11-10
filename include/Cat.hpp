@@ -9,9 +9,10 @@ class Cat
 private:
     int size;
     int **shape;
-    int iterator_grid_position_x;
-    int iterator_grid_position_y;
+    int iterator_grid_position_line;
+    int iterator_grid_position_column;
     int iterator_rotation;
+    bool already_placed;
 public:
     Cat(int size);
     ~Cat();

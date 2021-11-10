@@ -63,7 +63,8 @@ int main()
     //* Backtracking
     
     int iterator = 0;
-    while (iterator < number_of_cats)
+    //while (iterator < number_of_cats)
+    while(iterator < 8)
     {
         if (cat_array[iterator]->place_cat(game_grid_padded, padded_grid_size))
         {
