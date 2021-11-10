@@ -1,10 +1,3 @@
-#include <iostream>
-#include <fstream>
-#include <vector>
-#include <limits.h>
-
-#include <sstream>
-
 #include "fct_files.hpp"
 
 void get_cats_config(std::string path, int &number_of_different_cats, int &maximum_cat_shape, int &number_of_cats, std::vector<std::string> &list_of_cats)

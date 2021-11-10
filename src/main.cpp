@@ -1,5 +1,3 @@
-#include <iostream>
-#include <vector>
 #include "fct_files.hpp"
 #include "Cat.hpp"
 
@@ -60,14 +58,10 @@ int main()
     get_grid("./data/GameGrid.txt", game_grid_padded, padded_grid_size, maximum_cat_shape);
 
     print_grid(game_grid_padded, padded_grid_size);
-
     std::cout << std::endl;
 
-    /*
-
-    print_grid(game_grid_padded, padded_grid_size);
-
     //* Backtracking
+    
     int iterator = 0;
     while (iterator < number_of_cats)
     {
@@ -79,11 +73,21 @@ int main()
         {
             iterator--;
         }
+        std::cout << "L'iterator est : " << iterator << std::endl;
+        print_grid(game_grid_padded, padded_grid_size);
+        std::cout<<std::endl;
     }
+    
+    /*
+    cat_array[7]->print_matrix();
+    cat_array[7]->rotate_shape();
+    cat_array[7]->print_matrix();
 
+    
     std::cout << "Solution grid is : " << std::endl;
 
     print_grid(game_grid_padded, padded_grid_size);
     */
+
     return 0;
 }
