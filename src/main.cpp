@@ -24,7 +24,7 @@ int main()
     for (size_t i = 0; i < number_of_cats; i++)
     {
         cat_array[i] = new Cat(maximum_cat_shape);
-        cat_array[i]->Set_cat_number(i+22);
+        cat_array[i]->Set_cat_number(i+1);
     }
 
     get_cats_shapes("./data/CatsShapes.txt", cat_array, list_of_cats);

@@ -23,6 +23,9 @@ public:
     bool place_cat(int ** game_grid,int grid_size);
     bool rotate_shape();
     void increment_position_iterators(int grid_size);
+    int get_iterator_grid_position_line();
+    int get_iterator_grid_position_column();
+    int get_iterator_rotation();
 };
 
 #endif

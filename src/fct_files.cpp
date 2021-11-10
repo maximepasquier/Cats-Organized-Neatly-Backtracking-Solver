@@ -146,7 +146,10 @@ void print_solution(int **game_grid, Cat *cat_array[], int initial_grid_size, in
 {
     for (int i = 0; i < number_of_cats; i++)
     {
-        
+        std::cout << "Cat number " << i << std::endl;
+        std::cout << "iterator position line : " << cat_array[i]->get_iterator_grid_position_line() << std::endl;
+        std::cout << "iterator position column : " << cat_array[i]->get_iterator_grid_position_column() << std::endl;
+        std::cout << "iterator rotation : " << cat_array[i]->get_iterator_rotation() << std::endl;
+        std::cout << std::endl;
     }
-    
 }
