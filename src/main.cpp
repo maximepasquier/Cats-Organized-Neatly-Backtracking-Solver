@@ -1,5 +1,6 @@
 #include "fct_files.hpp"
 #include "Cat.hpp"
+#include <chrono>
 
 int main()
 {
@@ -24,7 +25,7 @@ int main()
     for (size_t i = 0; i < number_of_cats; i++)
     {
         cat_array[i] = new Cat(maximum_cat_shape);
-        cat_array[i]->Set_cat_number(i+1);
+        cat_array[i]->Set_cat_number(i + 2);
     }
 
     get_cats_shapes("./data/CatsShapes.txt", cat_array, list_of_cats);
@@ -64,6 +65,8 @@ int main()
     //* Backtracking
 
     int iterator = 0;
+
+    std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
     while (iterator < number_of_cats)
     {
         //std::cout << "L'iterator est : " << iterator << std::endl;
@@ -79,6 +82,7 @@ int main()
         //print_grid(game_grid_padded, padded_grid_size);
         //std::cout << std::endl;
     }
+    std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
 
     /*
     cat_array[7]->print_matrix();
@@ -97,7 +101,11 @@ int main()
     {
         solution_grid[i] = new int[initial_grid_size];
     }
-    print_solution(solution_grid, cat_array, initial_grid_size,number_of_cats);
+    matrix_solution(solution_grid, game_grid_padded, initial_grid_size, padded_grid_size);
+
+    print_solution(solution_grid, initial_grid_size);
+
+    std::cout << "Time difference = " << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() << "[µs]" << std::endl;
 
     return 0;
 }

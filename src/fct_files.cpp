@@ -142,14 +142,26 @@ void print_grid(int **game_grid, int grid_size)
     }
 }
 
-void print_solution(int **game_grid, Cat *cat_array[], int initial_grid_size, int number_of_cats)
+void matrix_solution(int **solution_grid, int **game_grid, int initial_grid_size, int padded_grid_size)
 {
-    for (int i = 0; i < number_of_cats; i++)
+    for (int line = (padded_grid_size - initial_grid_size) / 2; line < padded_grid_size - (initial_grid_size / 2); line++)
     {
-        std::cout << "Cat number " << i << std::endl;
-        std::cout << "iterator position line : " << cat_array[i]->get_iterator_grid_position_line() << std::endl;
-        std::cout << "iterator position column : " << cat_array[i]->get_iterator_grid_position_column() << std::endl;
-        std::cout << "iterator rotation : " << cat_array[i]->get_iterator_rotation() << std::endl;
+        for (int column = (padded_grid_size - initial_grid_size) / 2; column < padded_grid_size - (initial_grid_size / 2); column++)
+        {
+            solution_grid[line-(padded_grid_size - initial_grid_size) / 2][column-(padded_grid_size - initial_grid_size) / 2] = game_grid[line][column] - 2;
+        }
+    }
+}
+
+void print_solution(int **solution_grid, int initial_grid_size)
+{
+    std::cout << "The solution matrix is : " << std::endl;
+    for (int line = 0; line < initial_grid_size; line++)
+    {
+        for (int column = 0; column < initial_grid_size; column++)
+        {
+            std::cout << solution_grid[line][column] << " ";
+        }
         std::cout << std::endl;
     }
 }

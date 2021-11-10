@@ -101,7 +101,6 @@ bool Cat::place_cat(int **game_grid, int grid_size)
                         iterator_grid_position_column = 0;
                         iterator_rotation = 0;
                         already_placed = false;
-                        //std::cout << "FALSE!" << std::endl;
                         return false;
                     }
                     increment_position_iterators(grid_size);
@@ -116,11 +115,11 @@ bool Cat::place_cat(int **game_grid, int grid_size)
     {
         for (int grid_column = iterator_grid_position_column; grid_column < iterator_grid_position_column + size; grid_column++)
         {
-            if (shape[grid_line - iterator_grid_position_line][grid_column - iterator_grid_position_column] | game_grid[grid_line][grid_column])
+            if (shape[grid_line - iterator_grid_position_line][grid_column - iterator_grid_position_column] != 0)
             {
                 game_grid[grid_line][grid_column] = cat_number;
             }
-            else
+            else if (game_grid[grid_line][grid_column] == 0)
             {
                 game_grid[grid_line][grid_column] = 0;
             }
