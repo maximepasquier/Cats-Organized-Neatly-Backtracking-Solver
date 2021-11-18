@@ -1,0 +1,5 @@
+GridSize = 5
+NumberOfDifferentCats = 4
+SizeOfCats = 3
+NumberOfCats = 8
+ListOfCats = Cat1,Cat2,Cat2,Cat2,Cat2,Cat3,Cat3,Cat4
